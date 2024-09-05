@@ -2,11 +2,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const app = express();
 const PORT = 3000;
 
+dotenv.config();
 // Replace with your MongoDB connection string
-mongoose.connect('mongodb+srv://pkumarpatna4:IVFEqN9EjDuQXLC9@cluster0.bnlas.mongodb.net/Blog')
+mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log('Connected to MongoDB Atlas'))
     .catch(err => console.log(err));
 
