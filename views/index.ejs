@@ -1,0 +1,53 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="realtive">
+    <header class="font-bold  py-2 text-5xl bg-blue-500 sticky top-0">
+        <h1>Welcome to My Blog</h1>
+    </header>
+    <section class="max-w-lg mx-auto mt-10 p-6 bg-gray-300 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-center mb-6">Create a New Post</h2>
+        <form action="/new-post" method="POST" class="space-y-4 ">
+            <input type="text" name="title" placeholder="Post Title" required
+                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <textarea name="content" placeholder="Post Content" required
+                class="w-full p-3 h-32 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            <button type="submit"
+                class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors duration-200">Submit</button>
+        </form>
+    </section>
+    <section class="max-w-4xl mx-auto mt-10 p-6">
+        <h2 class="font-bold text-4xl text-center text-gray-800 mb-8">Posts</h2>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <% posts.forEach((post)=> { %>
+                <li class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-600 hover:text-blue-800">
+                        <a href="/post/<%= post._id %>">
+                            <%= post.title %>
+                        </a>
+                    </h3>
+                    <p class="text-gray-700 mt-4">
+                        <%= post.content.substring(0, 10) %>...
+                    </p>
+                    <div class="mt-4 flex space-x-4">
+                        <form action="/delete-post/<%= post._id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors duration-200">Delete</button>
+                        </form>
+                        <a href="/post/<%= post._id %>" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-200">Edit</a>
+                    </div>
+                </li>
+                <% }) %>
+        </ul>
+    </section>
+</body>
+
+</html>

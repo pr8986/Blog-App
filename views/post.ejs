@@ -1,0 +1,37 @@
+<!-- views/post.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post - <%= post.title %>
+    </title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center">
+    <header class="bg-blue-500 text-white w-full py-2">
+        <!-- <h1>Edit Post</h1> -->
+        <h1 class="text-5xl font-bold text-center">
+            <%= post.title %>
+        </h1>
+    </header>
+    <section class="bg-white max-w-3xl w-full mt-8 p-8 rounded-lg shadow-lg">
+        <form action="/edit-post/<%= post._id %>" method="POST" class="space-y-4">
+            <input type="text" name="title" value="<%= post.title %>" required
+                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <textarea name="content" required
+                class="w-full p-3 h-64 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"><%= post.content %></textarea>
+            <button type="submit"
+                class="w-full bg-blue-500 text-white py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Update
+                Post</button>
+        </form>
+        <a href="/"
+            class="inline-block mt-6 bg-blue-500 text-white py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Back
+            to Home</a>
+    </section>
+</body>
+
+</html>
