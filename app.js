@@ -22,7 +22,7 @@ const Post = mongoose.model('Post', postSchema);
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));  //Parse URL encoded data
 
 // Route to display all posts
 app.get('/', async (req, res) => {
@@ -48,6 +48,7 @@ app.get('/post/:id', async (req, res) => {
 
 // Route to handle new post creation
 app.post('/new-post', async (req, res) => {
+    
     const newPost = new Post({
         title: req.body.title,
         content: req.body.content
